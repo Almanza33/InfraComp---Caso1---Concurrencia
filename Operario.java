@@ -28,12 +28,15 @@ public class Operario extends Thread{
 
     public void cargar(){
         // Carga de la cinta al depósito
-        while(cinta.inventario() == 0){
+        while(!cinta.cargado()){
             this.yield();
         }
         Producto producto = cinta.retirar();
         if(producto.esFinal()){
             this.stopsVistos++;
+        }
+        while(deposito.inventario() == deposito.capacidad()){
+            this.yield();
         }
         deposito.almacenar(producto);
 
@@ -44,9 +47,13 @@ public class Operario extends Thread{
         while (deposito.inventario() == 0){
             this.yield();
         }
+        // Producto tipo x porque es indiferente del tipo
         Producto producto = deposito.retirar("x");
         if(producto.esFinal()){
             this.stopsVistos++;
+        }
+        while (cinta.cargado()){
+            this.yield();
         }
         cinta.almacenar(producto);
     }
