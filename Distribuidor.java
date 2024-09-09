@@ -18,11 +18,6 @@ public class Distribuidor extends Thread {
                 detenido = true;
                 System.out.println("Uno de los distribuidores ha visto un producto de stop y se ha detenido");
             }
-            try {
-                this.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }   
         }
     }
 

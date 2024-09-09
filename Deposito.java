@@ -139,10 +139,14 @@ public class Deposito {
     // Main de pruebas
     public static void main(String[] args){
         System.out.println("ola");
-        Deposito deposito = new Deposito("produccion", 5);
-        Producto producto = new Producto("A", false);
+        Deposito deposito = new Deposito("produccion", 15);
 
-        deposito.almacenar(producto);
+        for(int i = 0; i < 15; i ++){
+            Producto producto = new Producto("A", false);
+            deposito.almacenar(producto);
+        }
+
+        
         deposito.retirar("A");
         deposito.retirar("B");
 
